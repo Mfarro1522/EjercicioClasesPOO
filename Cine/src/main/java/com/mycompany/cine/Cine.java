@@ -1,7 +1,6 @@
 package com.mycompany.cine;
 
 import java.util.Scanner;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author Mauricio

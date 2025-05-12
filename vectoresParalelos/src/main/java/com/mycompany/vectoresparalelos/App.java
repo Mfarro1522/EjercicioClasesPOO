@@ -87,7 +87,7 @@ public class App {
             }
         }
     }
-
+  
     // Leer nota
     static int leerNota() {
         int nota;
