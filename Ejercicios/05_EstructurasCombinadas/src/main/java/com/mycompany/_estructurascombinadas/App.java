@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 /** @author Mauricio*/
 
-
     //Clase Empleado :
     class Empleado {
         int Dni;
@@ -119,11 +118,11 @@ public class App {
         }
     }
 
-    //total de Empleados de todas la areas (aqui se se coloca cada area de trabajo y se cuenta el total y se muetra no se pide area por q mostrara todas)
+    //total de Empleados de todas la areas 
     static void TotalEmpleadosPorArea (Empleado [] empresa){
         System.out.println("****Total de Empleados por Area de Trabajo****");
 
-        // Crear un array de areas de trabajo únicas
+        // array de areas de trabajo únicas
         String[] areasUnicas = new String[MAX];
         int[] conteoAreas = new int[MAX];
         int totalAreasUnicas = 0;
@@ -185,7 +184,7 @@ public class App {
         System.out.println("Total de Empleados en el Distrito " + distrito + " : " + contador);
     }
 
-    //ordenamiento Empleados por Edad (insercion)
+    //ordenamiento Empleados por Edad ()
     static void OrdenarEmpleadosPorEdad (Empleado [] empresa){
         for (int i = 1; i < MAX; i++) {
             Empleado temp = empresa[i];
@@ -256,7 +255,7 @@ public class App {
             System.out.println("1. Empleados por Area de Trabajo");
             System.out.println("2. Total de Empleados por Area de Trabajo");
             System.out.println("3. Empleado con Mayor numero de Hijos");
-            System.out.println("4. Total de empleados por distrito");
+            System.out.println("4. Empleados por distrito");
             System.out.println("5. Ordenar Empleados por Edad");
             System.out.println("6. Buscar Empleado por DNI");
             System.out.println("7. Modificar Datos de Empleado");
