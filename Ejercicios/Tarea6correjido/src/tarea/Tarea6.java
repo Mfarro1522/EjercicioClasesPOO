@@ -25,7 +25,7 @@ class Empleado {
 
 
 
-public class Tarea06 {
+public class Tarea6 {
     
     //Funciones de LLenar 1 clase
 
