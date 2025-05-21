@@ -25,7 +25,7 @@ class Empleado {
 
 
 
-public class Tarea6 {
+public class Tarea06 {
     
     //Funciones de LLenar 1 clase
 
@@ -43,14 +43,14 @@ public class Tarea6 {
 	    empleado.ventaR = new Venta();
 	}
 	
-	static void llenarAlmacen(Producto almacen) {
-	    System.out.println("Ingrese el id del producto");
-	    almacen.id = entrada.nextInt();
-	    entrada.nextLine(); 
+	static void llenarProducto(Producto producto) {
+	    
+	    producto.id = contadorAlmacen+1;
+            System.out.println("Id asignado del producto : " + producto.id);
 	    System.out.println("Ingrese el nombre del producto");
-	    almacen.nombreProducto = entrada.nextLine();
+	    producto.nombreProducto = entrada.nextLine();
 	    System.out.println("Ingrese el precio del producto");
-	    almacen.precio = entrada.nextInt();
+	    producto.precio = entrada.nextInt();
 	    entrada.nextLine();
 	}
 	
@@ -93,7 +93,7 @@ public class Tarea6 {
             llenarEmpleado(tienda[contadorEmpleados]);
             contadorEmpleados++;
         } else {
-            System.out.println("No se pueden agregar más empleados. Límite alcanzado.");
+            System.out.println("No se pueden agregar mas empleados. Limite alcanzado.");
         }
     }
 
@@ -103,10 +103,10 @@ public class Tarea6 {
         	almacen[contadorAlmacen] = new Producto();
             System.out.println("Producto " + (contadorAlmacen + 1));
             //se le pasa el objeto almacen para que se lllene
-            llenarAlmacen(almacen[contadorAlmacen]);
+            llenarProducto(almacen[contadorAlmacen]);
             contadorAlmacen++;
         } else {
-            System.out.println("No se pueden agregar más productos. Límite alcanzado.");
+            System.out.println("No se pueden agregar mas productos. Limite alcanzado.");
         }
     }
 
@@ -133,7 +133,7 @@ public class Tarea6 {
         }
     }
 
-    //Menu de ventas
+    //Menu de ventas1
     static void menuVentas(Empleado[] empleados, Producto[] almacen) {
         if (contadorEmpleados == 0 || contadorAlmacen == 0) {
             System.out.println("No hay suficientes empleados o productos para realizar una venta.");
@@ -156,7 +156,7 @@ public class Tarea6 {
     //funcion para realizar la venta
     static void realizarVenta(Empleado empleado, Producto[] almacen) {
         if (contadorAlmacen == 0) {
-            System.out.println("No hay productos en el almacén.");
+            System.out.println("No hay productos en el almacen.");
             return;
         }
         System.out.println("Empleado que atiende: " + empleado.nombre);
@@ -165,20 +165,20 @@ public class Tarea6 {
             System.out.println((i + 1) + ". " + almacen[i].nombreProducto + " (Precio: " + almacen[i].precio + ")");
         }
         int indiceProduc = entrada.nextInt() - 1;
-        entrada.nextLine(); // Consume newline
+        entrada.nextLine(); 
 
         if (indiceProduc < 0 || indiceProduc >= contadorAlmacen) {
-            System.out.println("Selección de producto no válida.");
+            System.out.println("Selección de producto no valida.");
             return;
         }
 
         Producto productoVendido = almacen[indiceProduc];
         System.out.println("Ingrese la cantidad de '" + productoVendido.nombreProducto + "':");
         int cantidad = entrada.nextInt();
-        entrada.nextLine(); // Consume newline
+        entrada.nextLine(); 
 
         if (cantidad <= 0) {
-            System.out.println("Cantidad no válida.");
+            System.out.println("Cantidad no valida.");
             return;
         }
 
@@ -188,14 +188,14 @@ public class Tarea6 {
         System.out.println("1. Contado");
         System.out.println("2. Credito");
         int tipoPago = entrada.nextInt();
-        entrada.nextLine(); // Consume newline
+        entrada.nextLine(); 
 
         if (tipoPago == 1) {
-            empleado.ventaR.pagosContado += montoVenta;
+            empleado.ventaR.pagosContado += 1;
         } else if (tipoPago == 2) {
-            empleado.ventaR.pagosCredito += montoVenta;
+            empleado.ventaR.pagosCredito += 1;
         } else {
-            System.out.println("Tipo de pago no válido. Venta no registrada.");
+            System.out.println("Tipo de pago no valido. Venta no registrada.");
             return;
         }
         empleado.ventaR.total += montoVenta;
@@ -204,26 +204,42 @@ public class Tarea6 {
     }
 
     //funcion para mostrar las ventas
-    static void mostrarVentas(Empleado empleado) {
-        System.out.println("Empleado: " + empleado.nombre);
-        System.out.println("Total ventas: " + empleado.ventaR.total);
-        System.out.println("Pagos al contado: " + empleado.ventaR.pagosContado);
-        System.out.println("Pagos a credito: " + empleado.ventaR.pagosCredito);
+    static void mostrarVentas(Empleado [] tienda){
+        if (contadorEmpleados == 0) {
+            System.out.println("No hay empleados registrados.");
+            return;
+        }
+        System.out.println("****Ventas por empleado****");
+        for (int i = 0; i < contadorEmpleados; i++) {
+            Empleado emp = tienda[i];
+            System.out.println("Empleado: " + emp.nombre);
+            if (emp.ventaR != null) {
+                System.out.println("  Total ventas: " + emp.ventaR.total);
+                System.out.println("  Pagos al contado: " + emp.ventaR.pagosContado);
+                System.out.println("  Pagos a credito: " + emp.ventaR.pagosCredito);
+            } else {
+                System.out.println("  No tiene ventas registradas.");
+            }
+        }
     }
 
     // Nueva función para solicitar y mostrar ventas de un empleado específico
-    static void solicitarYMostrarVentasEmpleado(Empleado[] tienda) {
+    static void MostrarVentasEmpleado(Empleado[] tienda) {
         if (contadorEmpleados > 0) {
             System.out.println("Seleccione el empleado para mostrar sus ventas (1-" + contadorEmpleados + "):");
             for (int i = 0; i < contadorEmpleados; i++) {
                 System.out.println((i + 1) + ". " + tienda[i].nombre);
             }
             int empIndex = entrada.nextInt() - 1;
-            entrada.nextLine(); // consume newline
+            entrada.nextLine(); 
             if (empIndex >= 0 && empIndex < contadorEmpleados) {
-                mostrarVentas(tienda[empIndex]);
+                
+                System.out.println("Empleado: " + tienda[empIndex].nombre);
+                System.out.println("Total ventas: " + tienda[empIndex].ventaR.total);
+                System.out.println("Pagos al contado: " + tienda[empIndex].ventaR.pagosContado);
+                System.out.println("Pagos a credito: " + tienda[empIndex].ventaR.pagosCredito);
             } else {
-                System.out.println("Selección inválida.");
+                System.out.println("Selección invalida.");
             }
         } else {
             System.out.println("No hay empleados registrados.");
@@ -243,7 +259,7 @@ public class Tarea6 {
         boolean encontrado = false;
         for (int i = 0; i < contadorEmpleados; i++) {
             if (tienda[i].turno.equalsIgnoreCase(turnoBuscado)) {
-                System.out.println("Empleado: " + tienda[i].nombre + ", Código: " + tienda[i].codigo);
+                System.out.println("Empleado: " + tienda[i].nombre + ", Codigo: " + tienda[i].codigo);
                 encontrado = true;
             }
         }
@@ -266,9 +282,9 @@ public class Tarea6 {
             }
         }
         if (empleadoConMasVentas != null) {
-            System.out.println("Empleado que más vende: " + empleadoConMasVentas.nombre + " con un total de " + maxVentas);
+            System.out.println("Empleado que mas vende: " + empleadoConMasVentas.nombre + " con un total de " + maxVentas);
         } else {
-            System.out.println("No hay ventas registradas o ningún empleado ha vendido.");
+            System.out.println("No hay ventas registradas o ningun empleado ha vendido.");
         }
     }
 
@@ -316,7 +332,7 @@ public class Tarea6 {
     }
 
     //menu principal
-    static void Menu(Empleado[] Tienda, Producto[] almacenArr) {
+    static void Menu(Empleado[] Tienda, Producto[] almacen) {
         int opcion;
         do {
             System.out.println("\n****MENU PRINCIPAL****");
@@ -325,31 +341,33 @@ public class Tarea6 {
             System.out.println("3. Mostrar empleados");
             System.out.println("4. Mostrar productos del almacen");
             System.out.println("5. Realizar venta");
-            System.out.println("6. Mostrar ventas de un empleado");
-            System.out.println("7. Mostrar empleados por turno");
-            System.out.println("8. Mostrar empleado que mas vende");
-            System.out.println("9. Mostrar total de ventas (contado/credito)");
-            System.out.println("10. Ordenar empleados por monto de ventas");
-            System.out.println("11. Salir");
+            System.out.println("6. Mostrar ventas");
+            System.out.println("7. Mostrar ventas de un empleado");
+            System.out.println("8. Mostrar empleados por turno");
+            System.out.println("9. Mostrar empleado que mas vende");
+            System.out.println("10. Mostrar total de ventas (contado/credito)");
+            System.out.println("11. Ordenar empleados por monto de ventas");
+            System.out.println("12. Salir");
             System.out.print("Seleccione una opcion: ");
             opcion = entrada.nextInt();
             entrada.nextLine(); // Consumir la nueva línea
 
             switch (opcion) {
             case 1:llenarTienda(Tienda);break;
-            case 2:llenarAlmacen(almacenArr);break;
+            case 2:llenarAlmacen(almacen);break;
             case 3:mostrarTienda(Tienda);break;
-            case 4:mostrarAlmacen(almacenArr);break;
-            case 5:menuVentas(Tienda, almacenArr);break;
-            case 6:solicitarYMostrarVentasEmpleado(Tienda);break;
-            case 7:empleadosTurno(Tienda);break;
-            case 8:empleadoMasVende(Tienda);break;
-            case 9:totalVentas(Tienda);break;
-            case 10:ordenarVentas(Tienda);break;
-            case 11:System.out.println("Saliendo del programa...");break;
+            case 4:mostrarAlmacen(almacen);break;
+            case 5:menuVentas(Tienda , almacen);break;
+            case 6:mostrarVentas(Tienda ); break;
+            case 7:MostrarVentasEmpleado(Tienda);break;
+            case 8:empleadosTurno(Tienda);break;
+            case 9:empleadoMasVende(Tienda);break;
+            case 10:totalVentas(Tienda);break;
+            case 11:ordenarVentas(Tienda);break;
+            case 12:System.out.println("Saliendo del programa...");break;
             default:System.out.println("Opcion no valida. Intente de nuevo.");
             }
-        } while (opcion != 11);
+        } while (opcion != 12);
       }
 
 
