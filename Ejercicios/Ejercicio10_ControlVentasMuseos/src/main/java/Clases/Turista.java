@@ -18,8 +18,6 @@ public class Turista {
 		listaCompras = new ListaCompras();
 	}
 
-	
-
 	public String getDni() {
 		return Dni;
 	}
@@ -55,14 +53,15 @@ public class Turista {
 		this.listaCompras = listaCompras;
 	}
 
-
-
+	
+	
 	@Override
 	public String toString() {
-		return "Turista [Dni=" + Dni + ", nombre=" + nombre + ", Tipo=" + Tipo + ", listaCompras="
-				+ listaCompras.mostrarCompras() + "]";
+		return "Dni : " + Dni + ", nombre : " + nombre + ", Tipo : " + Tipo;
 	}
-	
+
+
+
 	public String agregarCompra(String nombreSitio, int numeroEntradas) {
 		return listaCompras.agregarCompra(nombreSitio, numeroEntradas);
 	}

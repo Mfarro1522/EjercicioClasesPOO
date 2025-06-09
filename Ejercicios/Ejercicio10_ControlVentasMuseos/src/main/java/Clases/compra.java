@@ -19,11 +19,10 @@ public class compra {
 		return PagoTotal;
 	}
 
-
 	@Override
 	public String toString() {
-		return "compra [PRECIO_ENTRADA=" + PRECIO_ENTRADA + ", nombreSitio=" + nombreSitio + ", numeroEntradas="
-				+ numeroEntradas + ", PagoTotal=" + PagoTotal + "]";
+		return "nombreSitio :" + nombreSitio + ", numeroEntradas :"
+				+ numeroEntradas + ", PagoTotal :" + PagoTotal;
 	}
 	
 	

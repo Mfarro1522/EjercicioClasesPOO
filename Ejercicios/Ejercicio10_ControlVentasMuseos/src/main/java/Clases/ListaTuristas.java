@@ -36,7 +36,7 @@ public class ListaTuristas {
 		}
 		return datos;
 	}
-	
+
 	public String registrarCompra(String codigoTurista, String nombreSitio, int numeroEntradas) {
 		for (int i = 0; i < contador; i++) {
 			if (turistas[i].getDni().equals(codigoTurista)) {
@@ -45,7 +45,7 @@ public class ListaTuristas {
 		}
 		return "Turista no encontrado";
 	}
-	
+
 	public String mostrarCompras(String codigoTurista) {
 		for (int i = 0; i < contador; i++) {
 			if (turistas[i].getDni().equals(codigoTurista)) {

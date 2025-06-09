@@ -1,7 +1,5 @@
 package com.mycompany.ejercicio10_controlventasmuseos;
-
 import javax.swing.JOptionPane;
-
 import Clases.ListaTuristas;
 import Clases.museoycitios;
 
@@ -12,7 +10,7 @@ public class Ejercicio10_ControlVentasMuseos {
 
     public static void main(String[] args) {
     	
-    	JOptionPane.showMessageDialog(null, "Primero ingrese los museos o sitios de interes");
+    	JOptionPane.showMessageDialog(null, "Bienvenido al Control de Ventas de Museos y Sitios Turísticos");
     	
     	museoycitios [] museosycitios = new museoycitios[MAX];
     	llenaryMostrarMuseos(museosycitios);
@@ -24,26 +22,26 @@ public class Ejercicio10_ControlVentasMuseos {
     	op_registrarTurista(listaTuristas);
     	
     	int op;
-    	
+
     	do {
-			op = opciones();
-			switch (op) {
-			case 1:
-				op_registrarTurista(listaTuristas);
-				break;
-			case 2:
-				op_registrarCompra(listaTuristas);
-				break;
-			case 3:
-				op_mostrarCompras(listaTuristas);
-				break;
-			case 4:
-				JOptionPane.showMessageDialog(null, "saliendo del programa...");
-				break;
-			default:
-				JOptionPane.showMessageDialog(null, "opcion no valida");
-			}
-		} while (op != 4);
+    		op = opciones();
+    		switch (op) {
+    		case 1:
+    			op_registrarTurista(listaTuristas);
+    			break;
+    		case 2:
+    			op_registrarCompra(listaTuristas);
+    			break;
+    		case 3:
+    			op_mostrarCompras(listaTuristas);
+    			break;
+    		case 4:
+    			JOptionPane.showMessageDialog(null, "saliendo del programa...");
+    			break;
+    		default:
+    			JOptionPane.showMessageDialog(null, "opcion no valida");
+    		}
+    	} while (op != 4);
     	
     	
         
@@ -53,7 +51,7 @@ public class Ejercicio10_ControlVentasMuseos {
     	
     	String codigo, nombre, tipo;
 		
-		codigo = JOptionPane.showInputDialog("Ingrese el codigo del turista: ");
+		codigo = JOptionPane.showInputDialog("Ingrese el Dni del turista: ");
 		nombre = JOptionPane.showInputDialog("Ingrese el nombre del turista: ");
 		tipo = JOptionPane.showInputDialog("Ingrese el Tipo (Local o Nacional) : ");
 		
@@ -66,6 +64,7 @@ public class Ejercicio10_ControlVentasMuseos {
 		String codigo, nombre, descripcion, ubicacion;
 		
 		for (int i = 0; i < museosycitios.length; i++) {
+			JOptionPane.showMessageDialog(null, "Ingrese los datos del museo o sitio " + (i + 1));
 			codigo = JOptionPane.showInputDialog("Ingrese el codigo del museo o sitio: ");
 			nombre = JOptionPane.showInputDialog("Ingrese el nombre del museo o sitio: ");
 			descripcion = JOptionPane.showInputDialog("Ingrese la descripcion del museo o sitio: ");
@@ -87,7 +86,7 @@ public class Ejercicio10_ControlVentasMuseos {
 		String codigoTurista, nombreSitio;
 		int numeroEntradas;
 		
-		codigoTurista = JOptionPane.showInputDialog("Ingrese el codigo del turista: ");
+		codigoTurista = JOptionPane.showInputDialog("Ingrese el Dni del turista: ");
 		nombreSitio = JOptionPane.showInputDialog("Ingrese el nombre del sitio: ");
 		numeroEntradas = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el numero de entradas: "));
 		
@@ -95,15 +94,16 @@ public class Ejercicio10_ControlVentasMuseos {
 		JOptionPane.showMessageDialog(null, resultado);
 		
 	}
-    
+ 
     static void op_mostrarCompras(ListaTuristas listaTuristas) {
-    	String codigoTurista = JOptionPane.showInputDialog("Ingrese el codigo del turista: ");
+    	String codigos = listaTuristas.mostrarTuristas();
+    	String codigoTurista = JOptionPane.showInputDialog("Ingrese el Dni del turista: \n"+codigos);
+    	//mostramos codigos de los turistas registrados
+    	
     	String resultado = listaTuristas.mostrarCompras(codigoTurista);
     	JOptionPane.showMessageDialog(null, resultado);
     }
-    
- 
-    
+
     static int opciones() {
 		String menu = "1. Registrar Turista \n"+
 				"2. Registrar Compra \n"+
