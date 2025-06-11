@@ -1,7 +1,8 @@
 package com.mycompany.ejercicio10_controlventasmuseos;
 import javax.swing.JOptionPane;
 import Clases.ListaTuristas;
-import Clases.museoycitios;
+import Clases.ListaCompras;
+import Clases.ListaMuseos;
 
 /**** @author mauri*/
 public class Ejercicio10_ControlVentasMuseos {
@@ -12,15 +13,19 @@ public class Ejercicio10_ControlVentasMuseos {
     	
     	JOptionPane.showMessageDialog(null, "Bienvenido al Control de Ventas de Museos y Sitios Turísticos");
     	
-    	museoycitios [] museosycitios = new museoycitios[MAX];
-    	llenaryMostrarMuseos(museosycitios);
+    	ListaMuseos listaMuseos = new ListaMuseos();
+    	llenaryMostrarMuseos(listaMuseos);
     	
-    	//turistas 
+    	//listas paralelas 
     	ListaTuristas listaTuristas = new ListaTuristas();
+    	ListaCompras listaCompras = new ListaCompras();
+    	
     	//turista inicial 
     	JOptionPane.showMessageDialog(null, "Ahora ingrese el primer turistas");
     	op_registrarTurista(listaTuristas);
-    	op_registrarCompra(listaTuristas);
+		JOptionPane.showMessageDialog(null, "Ahora ingrese el primer compra");
+		//registramos la primera compra
+    	op_registrarCompra(listaTuristas, listaCompras, listaMuseos);
     	
     	int op;
 
@@ -31,10 +36,10 @@ public class Ejercicio10_ControlVentasMuseos {
     			op_registrarTurista(listaTuristas);
     			break;
     		case 2:
-    			op_registrarCompra(listaTuristas);
+    			op_registrarCompra(listaTuristas, listaCompras, listaMuseos);
     			break;
     		case 3:
-    			op_mostrarCompras(listaTuristas);
+    			op_mostrarCompras(listaTuristas, listaCompras);
     			break;
     		case 4:
     			JOptionPane.showMessageDialog(null, "saliendo del programa...");
@@ -60,48 +65,62 @@ public class Ejercicio10_ControlVentasMuseos {
 		
 	}
     
-    static void llenaryMostrarMuseos(museoycitios [] museosycitios) {
+    static void llenaryMostrarMuseos(ListaMuseos listaMuseos) {
 		
 		String codigo, nombre, descripcion, ubicacion;
 		
-		for (int i = 0; i < museosycitios.length; i++) {
+		for (int i = 0; i < MAX; i++) {
 			JOptionPane.showMessageDialog(null, "Ingrese los datos del museo o sitio " + (i + 1));
 			codigo = JOptionPane.showInputDialog("Ingrese el codigo del museo o sitio: ");
 			nombre = JOptionPane.showInputDialog("Ingrese el nombre del museo o sitio: ");
 			descripcion = JOptionPane.showInputDialog("Ingrese la descripcion del museo o sitio: ");
 			ubicacion = JOptionPane.showInputDialog("Ingrese la ubicacion del museo o sitio: ");
 			
-			museosycitios[i] = new museoycitios(codigo, nombre, descripcion, ubicacion);
+			listaMuseos.agregarMuseo(codigo, nombre, descripcion, ubicacion);
 		}
 		
-		String datos = "";
-		for (int i = 0 ; i < museosycitios.length ; i++) {
-		datos = datos + museosycitios[i].toString() + "\n";
-		}
+		String datos = listaMuseos.mostrarMuseos();
 		JOptionPane.showMessageDialog(null, datos);
 	
     }
     
-    static void op_registrarCompra(ListaTuristas listaTuristas) {
+  	static void op_registrarCompra(ListaTuristas listaTuristas, ListaCompras listaCompras, ListaMuseos listaMuseos) {
 		
 		String codigoTurista, nombreSitio;
 		int numeroEntradas;
 		
-		codigoTurista = JOptionPane.showInputDialog("Ingrese el Dni del turista: ");
-		nombreSitio = JOptionPane.showInputDialog("Ingrese el nombre del sitio: ");
+		// Solicitar solo el DNI del turista
+		codigoTurista = JOptionPane.showInputDialog("Ingrese el DNI del turista: ");
+		
+		// Verificar si el turista existe solo con el DNI
+		if (!listaTuristas.existeTurista(codigoTurista)) {
+			JOptionPane.showMessageDialog(null, "Turista no encontrado. Verifique que el DNI sea correcto.");
+			return;
+		}
+		
+		// Mostrar museos disponibles
+		String museosDisponibles = listaMuseos.mostrarNombresMuseos();
+		nombreSitio = JOptionPane.showInputDialog("Ingrese el nombre del sitio: \n\n" + museosDisponibles);
+		
+		// Verificar si el museo/sitio existe
+		if (!listaMuseos.existeMuseo(nombreSitio)) {
+			JOptionPane.showMessageDialog(null, "El museo o sitio ingresado no existe. Verifique el nombre.");
+			return;
+		}
+		
 		numeroEntradas = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el numero de entradas: "));
 		
-		String resultado = listaTuristas.registrarCompra(codigoTurista, nombreSitio, numeroEntradas);
+		String resultado = listaCompras.agregarCompra(codigoTurista, nombreSitio, numeroEntradas);
 		JOptionPane.showMessageDialog(null, resultado);
 		
 	}
  
-    static void op_mostrarCompras(ListaTuristas listaTuristas) {
+    static void op_mostrarCompras(ListaTuristas listaTuristas, ListaCompras listaCompras) {
     	String codigos = listaTuristas.mostrarTuristas();
     	String codigoTurista = JOptionPane.showInputDialog("Ingrese el Dni del turista: \n"+codigos);
     	//mostramos codigos de los turistas registrados
     	
-    	String resultado = listaTuristas.mostrarCompras(codigoTurista);
+    	String resultado = listaCompras.mostrarComprasDelTurista(codigoTurista);
     	JOptionPane.showMessageDialog(null, resultado);
     }
 
