@@ -1,4 +1,5 @@
-package com.mycompany.ejercicio10_controlventasmuseos;
+package main;
+
 import javax.swing.JOptionPane;
 import Clases.ListaTuristas;
 import Clases.ListaCompras;
