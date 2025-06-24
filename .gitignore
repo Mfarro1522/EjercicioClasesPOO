@@ -1,4 +1,88 @@
-/Cine/target/
-/04_VectorEstructuras/target/
-/.metadata/
-/Ejercicios/07_ClasesObjetos/target/
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+# *.jar # Comentado para no ignorar los jars de proyectos Maven que sí podrían ser necesarios en 'target' si no se limpia bien 'target'
+# *.war
+# *.nar
+# *.ear
+# *.zip
+# *.tar.gz
+# *.rar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+#ولاتنسى ملفات ال target بداخل كل مشروع فرعي
+
+# IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# Eclipse
+.project
+.classpath
+.settings/
+bin/
+# نوّع ال .settings بداخل كل مشروع فرعي
+tmp/
+.metadata/ # Обычно на уровне проекта, а не в репозитории
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+
+# VS Code
+.vscode/
+
+# Mac OS
+.DS_Store
+
+# Thumbs.db (Windows)
+Thumbs.db
+
+# Files from specific projects that might have been missed by broader rules
+# Example: Ejercicios/Tarea6correjido/bin/
+Tarea6correjido/bin/
+# Example: Ejercicios/.idea/
+Ejercicios/.idea/
+# Example: Ejercicios/01_sintaxis/target/
+01_sintaxis/target/
+# Add other specific target folders if they are not caught by the global target/
+# For instance, if they are not at the root of a maven project recognized by 'target/' alone.
+
+# Ensure .project and .classpath files are ignored in subdirectories too
+**/.project
+**/.classpath
+**/.settings/
+**/.idea/
+**/target/
+**/bin/
+**/*.iml
