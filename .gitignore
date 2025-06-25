@@ -86,3 +86,4 @@ Ejercicios/.idea/
 **/target/
 **/bin/
 **/*.iml
+/.metadata/
