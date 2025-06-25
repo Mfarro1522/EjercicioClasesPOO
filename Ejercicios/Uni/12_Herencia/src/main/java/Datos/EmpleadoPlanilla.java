@@ -26,9 +26,22 @@ public class EmpleadoPlanilla extends Empleado{
 
     @Override
     public String mostrarDatos() {
-        return super.mostrarDatos() + " cargo: " + cargo + ", TiempoServicio: " + TiempoServicio ;
+        return super.mostrarDatos() + " cargo: " + cargo + ", TiempoServicio: " + TiempoServicio + "  - Sueldo : "+ super.getSueldo();
     }
     
+    @Override
+    public void CalcularSueldo() {
+        if (this.cargo.equalsIgnoreCase("gerente")) {
+            this.setsueldo( 5000 ); 
+        } else if (this.cargo.equalsIgnoreCase("supervisor")) {
+            this.setsueldo( 3000 );
+        } else if (this.cargo.equalsIgnoreCase("asistente")) {
+            this.setsueldo( 1500 );
+        } else {
+            this.setsueldo( 1000 ); 
+        }
+        
+    }
     
     
     

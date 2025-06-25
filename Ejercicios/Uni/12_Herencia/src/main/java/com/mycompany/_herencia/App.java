@@ -34,6 +34,7 @@ public class App {
         Lista.agregarEmpleado(objEC);
         Lista.agregarEmpleado(objET);
         
+        Lista.calcularSueldos();
         JOptionPane.showMessageDialog(null, Lista.mostrarEmpleados());;
         
     }

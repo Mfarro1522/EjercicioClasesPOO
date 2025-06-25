@@ -29,7 +29,16 @@ public class EmpleadoTemporal extends Empleado{
 	//Sobrecargamos mostrarDatos
 	@Override
 	public String mostrarDatos() {
-		return super.mostrarDatos() + "Dias por semana: " + DiasporSemana + "Horas: " + Horas + " Precio por hora: " + precioHora;
+		return super.mostrarDatos() + " Dias por semana: " + DiasporSemana + "Horas: " + Horas + " Precio por hora: " + precioHora + "- Sueldo : "+ super.getSueldo();
+	}
+
+	@Override
+	public void CalcularSueldo() {	
+
+		double sueldo = DiasporSemana * Horas * precioHora;
+		this.setsueldo(sueldo);
+		
+		
 	}
 
 

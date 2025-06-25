@@ -6,11 +6,12 @@ public class Empleado {
     private String dni;
     private String nombres;
     private int edad;
+    private double sueldo;
 
     public Empleado() {
     }
 
-    public Empleado(String dni, String nombres, int edad) {
+    public Empleado(String dni, String nombres, int edad ) {
         this.dni = dni;
         this.nombres = nombres;
         this.edad = edad;
@@ -28,9 +29,26 @@ public class Empleado {
         return edad;
     }
 
+    public double getSueldo() {
+        return sueldo;
+    }
+
+    //setters
+
+    //sueldo
+    public void setsueldo(double sueldo) {
+        this.sueldo = sueldo;
+    }
+
+
     
     public String mostrarDatos() {
-        return "dni: " + dni + ", nombres: " + nombres + ", edad: " + edad ;
+        return   "dni: " + dni + ", nombres: " + nombres + ", edad: " + edad ;
+    }
+
+    public void CalcularSueldo() {
+    	
+        
     }
 
     

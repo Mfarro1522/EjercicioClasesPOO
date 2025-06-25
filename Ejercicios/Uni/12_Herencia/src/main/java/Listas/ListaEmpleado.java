@@ -28,5 +28,11 @@ public class ListaEmpleado  {
         return datos;
     }
     
+    public void calcularSueldos() {
+        for (int i = 0; i < contador; i++) {
+            empleados[i].CalcularSueldo();
+        }
+    }
+    
 
 }

@@ -23,10 +23,15 @@ public class EmpleadoContratado extends Empleado{
 
     @Override
     public String mostrarDatos() {
-        return super.mostrarDatos() + " horasTrabajadas: " + horasTrabajadas + ", precioHora: " + precioHora;
+        return super.mostrarDatos() + " horasTrabajadas: " + horasTrabajadas + ", precioHora: " + precioHora + "  - Sueldo : "+ super.getSueldo();
     }
-    
-    
-    
-    
+
+    @Override
+    public void CalcularSueldo() {
+
+        double sueldo = horasTrabajadas * precioHora;
+        this.setsueldo(sueldo);
+       
+    }
+
 }
