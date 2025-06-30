@@ -7,8 +7,8 @@ public class EmpleadoContratado extends Empleado{
     public EmpleadoContratado() {
     }
 
-    public EmpleadoContratado(int horasTrabajadas, double precioHora, String dni, String nombres, int edad) {
-        super(dni, nombres, edad);
+    public EmpleadoContratado(int horasTrabajadas, double precioHora, String dni, String nombres, int edad , int numHijos) {
+        super(dni, nombres, edad , numHijos);
         this.horasTrabajadas = horasTrabajadas;
         this.precioHora = precioHora;
     }
@@ -23,15 +23,18 @@ public class EmpleadoContratado extends Empleado{
 
     @Override
     public String mostrarDatos() {
-        return super.mostrarDatos() + " horasTrabajadas: " + horasTrabajadas + ", precioHora: " + precioHora + "  - Sueldo : "+ super.getSueldo();
+        return super.mostrarDatos() + " horasTrabajadas: " + horasTrabajadas + ", precioHora: " + precioHora + "  - Sueldo : "+ sueldo;
     }
 
     @Override
     public void CalcularSueldo() {
 
-        double sueldo = horasTrabajadas * precioHora;
-        this.setsueldo(sueldo);
+        this.sueldo = horasTrabajadas * precioHora;
+        
        
     }
 
+
 }
+
+

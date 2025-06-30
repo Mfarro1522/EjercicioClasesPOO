@@ -2,57 +2,40 @@
 package Datos;
 
 //SuperClase - Clase Padre
-public class Empleado {
-    private String dni;
-    private String nombres;
-    private int edad;
-    private double sueldo;
+public abstract class Empleado {
+	protected String dni;
+    protected String nombres;
+    protected int edad;
+    protected double sueldo;
+    protected int numHijos;
 
     public Empleado() {
     }
 
-    public Empleado(String dni, String nombres, int edad ) {
+    public Empleado(String dni, String nombres, int edad , int numHijos) {
         this.dni = dni;
         this.nombres = nombres;
         this.edad = edad;
-    }
-
-    public String getDni() {
-        return dni;
-    }
-
-    public String getNombres() {
-        return nombres;
-    }
-
-    public int getEdad() {
-        return edad;
-    }
-
-    public double getSueldo() {
-        return sueldo;
-    }
-
-    //setters
-
-    //sueldo
-    public void setsueldo(double sueldo) {
-        this.sueldo = sueldo;
+        this.numHijos = numHijos;
     }
 
 
     
     public String mostrarDatos() {
-        return   "dni: " + dni + ", nombres: " + nombres + ", edad: " + edad ;
+        return   "dni: " + dni + ", nombres: " + nombres + ", edad: " + edad + "Numero de Hijos : "+ numHijos;
     }
 
-    public void CalcularSueldo() {
-    	
-        
-    }
+    public abstract void CalcularSueldo();
 
-    
-    
+	public void AgregarBono() {
+	double bono = 80;
+		if (this.numHijos>=2) {
+			this.sueldo += bono*2;
+		}else {
+			this.sueldo += bono*numHijos;
+		}
+		
+	}
     
     
     

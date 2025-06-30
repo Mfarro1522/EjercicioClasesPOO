@@ -34,5 +34,13 @@ public class ListaEmpleado  {
         }
     }
     
+    public void AgregarBonos() {
+        for (int i = 0; i < contador; i++) {
+            empleados[i].AgregarBono();
+        }
+    }
+    
+    
+    
 
 }
